@@ -16,4 +16,6 @@ public class CaronaController {
     public void listarCaronas() {}
 
     public void atualizarStatus(Carona carona) {}
+
+
 }

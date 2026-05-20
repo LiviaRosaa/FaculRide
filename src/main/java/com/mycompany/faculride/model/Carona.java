@@ -30,7 +30,7 @@ public class Carona {
         this.status = status;
     }
 
-    // Métodos vazios
+    // Métodos
     public void oferecerCarona() {}
 
     public void atualizarStatus() {}

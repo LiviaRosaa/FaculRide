@@ -16,6 +16,4 @@ public class UsuarioController {
     public Usuario login(String email) {
         return null;
     }
-
-    public void listarUsuarios() {}
 }

@@ -13,5 +13,7 @@ public class SolicitacaoController {
 
     public void solicitarVaga(Solicitacao solicitacao) {}
 
-    public void responderSolicitacao(Solicitacao solicitacao) {}
+    public void aceitarSolicitacao(Solicitacao solicitacao) {}
+
+    public void recusarSolicitacao(Solicitacao solicitacao) {}
 }
