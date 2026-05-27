@@ -4,10 +4,23 @@
  */
 package com.mycompany.faculride.dao;
 
+import com.mycompany.faculride.model.Usuario;
+
 /**
  *
  * @author livia
  */
 public class UsuarioDAO {
-    
+
+    public void salvar(Usuario usuario) {
+
+    }
+
+    public Usuario login(
+        String email,
+        String senha
+    ) {
+
+        return null;
+    }
 }

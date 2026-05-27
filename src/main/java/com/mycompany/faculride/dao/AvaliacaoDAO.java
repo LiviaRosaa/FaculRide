@@ -4,10 +4,21 @@
  */
 package com.mycompany.faculride.dao;
 
+import com.mycompany.faculride.model.Avaliacao;
+
 /**
  *
  * @author livia
  */
 public class AvaliacaoDAO {
-    
+
+    public void salvar(
+        Avaliacao avaliacao
+    ) {
+
+    }
+
+    public void listarAvaliacoes() {
+
+    }
 }

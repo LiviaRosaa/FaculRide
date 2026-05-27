@@ -11,12 +11,21 @@ package com.mycompany.faculride.view;
 public class FormCaronasDisponiveis extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormCaronasDisponiveis.class.getName());
+    private static FormCaronasDisponiveis FormCaronasDisponiveisUnico;
 
-    /**
-     * Creates new form FormCaronasDisponiveis
-     */
-    public FormCaronasDisponiveis() {
+    
+    private FormCaronasDisponiveis() {
         initComponents();
+    }
+
+    
+    // MÉTODO SINGLETON
+    public static FormCaronasDisponiveis getFormCaronasDisponiveis() {
+        if (FormCaronasDisponiveisUnico == null) {
+            FormCaronasDisponiveisUnico =
+            new FormCaronasDisponiveis();
+        }
+        return FormCaronasDisponiveisUnico;
     }
 
     /**
@@ -69,6 +78,7 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
 
         BtHome.setBackground(new java.awt.Color(204, 204, 255));
         BtHome.setText("Home");
+        BtHome.addActionListener(this::BtHomeActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,30 +131,14 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TableCaronaMouseClicked
 
+    private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
+        FormTelaHome.getFormTelaHome().setVisible(true);
+    }//GEN-LAST:event_BtHomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormCaronasDisponiveis().setVisible(true));
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtHome;

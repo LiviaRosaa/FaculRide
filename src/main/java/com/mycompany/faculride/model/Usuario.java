@@ -12,13 +12,15 @@ public class Usuario {
     private String nome;
     private String email;
     private String curso;
+    private String senha;
 
     public Usuario() {}
 
-    public Usuario(String nome, String email, String curso) {
+    public Usuario(String nome, String email, String curso, String senha) {
         this.nome = nome;
         this.email = email;
         this.curso = curso;
+        this.senha = senha;
     }
 
     // Métodos
@@ -39,4 +41,7 @@ public class Usuario {
 
     public String getCurso() { return curso; }
     public void setCurso(String curso) { this.curso = curso; }
+    
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
 }

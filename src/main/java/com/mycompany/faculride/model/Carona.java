@@ -15,13 +15,13 @@ public class Carona {
     private int id;
     private String origem;
     private String destino;
-    private LocalDateTime horario;
+    private String horario;
     private double valor;
     private String status;
 
     public Carona() {}
 
-    public Carona(int id, String origem, String destino, LocalDateTime horario, double valor, String status, Usuario motorista) {
+    public Carona(int id, String origem, String destino, String horario, double valor, String status, Usuario motorista) {
         this.id = id;
         this.origem = origem;
         this.destino = destino;
@@ -47,8 +47,8 @@ public class Carona {
     public String getDestino() { return destino; }
     public void setDestino(String destino) { this.destino = destino; }
 
-    public LocalDateTime getHorario() { return horario; }
-    public void setHorario(LocalDateTime horario) { this.horario = horario; }
+    public String getHorario() { return horario; }
+    public void setHorario(String horario) { this.horario = horario; }
 
     public double getValor() { return valor; }
     public void setValor(double valor) { this.valor = valor; }

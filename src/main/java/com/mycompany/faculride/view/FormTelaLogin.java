@@ -4,6 +4,11 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.UsuarioController;
+import com.mycompany.faculride.model.Usuario;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author livia
@@ -11,12 +16,20 @@ package com.mycompany.faculride.view;
 public class FormTelaLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormTelaLogin.class.getName());
-
+    private static FormTelaLogin telaLoginUnica;
     /**
      * Creates new form FormTelaLogin
      */
     public FormTelaLogin() {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+     public static FormTelaLogin getFormTelaLogin() {
+        if (telaLoginUnica == null) {
+            telaLoginUnica = new FormTelaLogin();
+        }
+        return telaLoginUnica;
     }
 
     /**
@@ -139,13 +152,44 @@ public class FormTelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_Text1ActionPerformed
 
     private void BtEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEntrarActionPerformed
-        // TODO add your handling code here:
+        entrar();
     }//GEN-LAST:event_BtEntrarActionPerformed
 
     private void BtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCadastrarActionPerformed
-        // TODO add your handling code here:
+        FormTelaCadastro.getFormTelaCadastro().setVisible(true);
     }//GEN-LAST:event_BtCadastrarActionPerformed
+    private void limparCampos() {
+    Text1.setText("");
+    Text2.setText("");
+} 
+    
+    private void entrar() {
 
+    UsuarioController controller =
+    new UsuarioController();
+
+    Usuario usuario =
+    controller.login(
+        Text1.getText(),
+        Text2.getText()
+    );
+    if (usuario != null) {
+
+        FormTelaHome
+        .getFormTelaHome()
+        .setVisible(true);
+
+        dispose();
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Email ou senha inválidos!"
+        );
+        limparCampos();
+    }
+}
     /**
      * @param args the command line arguments
      */

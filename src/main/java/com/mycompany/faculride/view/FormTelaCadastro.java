@@ -4,6 +4,10 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.UsuarioController;
+import com.mycompany.faculride.model.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author livia
@@ -11,12 +15,22 @@ package com.mycompany.faculride.view;
 public class FormTelaCadastro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormTelaCadastro.class.getName());
+     private static FormTelaCadastro formTelaCadastroUnico;
 
-    /**
-     * Creates new form FormTelaCadastro
-     */
-    public FormTelaCadastro() {
+    
+    private FormTelaCadastro() {
         initComponents();
+    }
+
+    
+    // MÉTODO SINGLETON
+    public static FormTelaCadastro
+    getFormTelaCadastro() {
+        if (formTelaCadastroUnico == null) {
+            formTelaCadastroUnico =
+            new FormTelaCadastro();
+        }
+        return formTelaCadastroUnico;
     }
 
     /**
@@ -42,6 +56,7 @@ public class FormTelaCadastro extends javax.swing.JFrame {
         TextCad4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         BtCad1 = new javax.swing.JButton();
+        BtCad2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +89,10 @@ public class FormTelaCadastro extends javax.swing.JFrame {
         BtCad1.setText("Login");
         BtCad1.addActionListener(this::BtCad1ActionPerformed);
 
+        BtCad2.setBackground(new java.awt.Color(204, 204, 255));
+        BtCad2.setText("Limpar");
+        BtCad2.addActionListener(this::BtCad2ActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,12 +124,14 @@ public class FormTelaCadastro extends javax.swing.JFrame {
                                 .addGap(117, 117, 117)))
                         .addGap(188, 188, 188))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(BtCad1)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(BtCad1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtCad2)
+                        .addGap(106, 106, 106))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(FormCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +167,9 @@ public class FormTelaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtCad1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtCad1)
+                    .addComponent(BtCad2))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -162,7 +185,7 @@ public class FormTelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCad5ActionPerformed
 
     private void BtCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCadActionPerformed
-        // TODO add your handling code here:
+        cadastrarUsuario();        
     }//GEN-LAST:event_BtCadActionPerformed
 
     private void TextCad4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCad4ActionPerformed
@@ -170,37 +193,62 @@ public class FormTelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCad4ActionPerformed
 
     private void BtCad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCad1ActionPerformed
-        // TODO add your handling code here:
+        FormTelaLogin.getFormTelaLogin().setVisible(true);
     }//GEN-LAST:event_BtCad1ActionPerformed
 
+    private void BtCad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCad2ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_BtCad2ActionPerformed
+private void limparCampos() {
+    TextCad1.setText("");
+    TextCad2.setText("");
+    TextCad3.setText("");
+    TextCad4.setText("");
+    TextCad5.requestFocus();
+    }
+private void cadastrarUsuario() {
+
+    Usuario usuario = new Usuario();
+
+    usuario.setNome(
+        TextCad1.getText()
+    );
+
+    usuario.setEmail(
+        TextCad4.getText()
+    );
+
+    usuario.setCurso(
+        TextCad3.getText()
+    );
+    
+    usuario.setSenha(
+        TextCad2.getText()
+    );
+
+
+    UsuarioController controller =
+    new UsuarioController();
+
+    controller.cadastrarUsuario(
+        usuario
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Usuário cadastrado!"
+    );
+    
+}
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormTelaCadastro().setVisible(true));
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtCad;
     private javax.swing.JButton BtCad1;
+    private javax.swing.JButton BtCad2;
     private javax.swing.JLabel FormCadastro;
     private javax.swing.JLabel LdlConfirm;
     private javax.swing.JLabel LdlCurso;

@@ -17,26 +17,41 @@
             </Property>
             <Property name="text" type="java.lang.String" value="\ud83c\udfe0 Home" containsInvalidXMLChars="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Menu1MouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Menu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="\ud83d\udc65 Oferecer Carona" containsInvalidXMLChars="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Menu2MouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Menu3">
           <Properties>
             <Property name="text" type="java.lang.String" value="\ud83d\ude97 Caronas dispon&#xed;veis" containsInvalidXMLChars="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Menu3MouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Menu4">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2709;&#xfe0f; Solicita&#xe7;&#xf5;es"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Menu4MouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Menu5">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2605;Avalia&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Menu5MouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

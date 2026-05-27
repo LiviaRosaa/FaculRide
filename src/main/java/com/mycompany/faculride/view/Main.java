@@ -10,7 +10,11 @@ package com.mycompany.faculride.view;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println("FaculRide");
+    public static void main(String args[]) {
+
+        FormTelaLogin
+        .getFormTelaLogin()
+        .setVisible(true);
+
     }
 }

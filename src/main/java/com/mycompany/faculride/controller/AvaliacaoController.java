@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.faculride.controller;
+import com.mycompany.faculride.dao.AvaliacaoDAO;
 import com.mycompany.faculride.model.Avaliacao;
 /**
  *
@@ -11,7 +12,23 @@ import com.mycompany.faculride.model.Avaliacao;
 
 public class AvaliacaoController {
 
-    public void avaliarMotorista(Avaliacao avaliacao) {}
+    private AvaliacaoDAO avaliacaoDAO =
+    new AvaliacaoDAO();
 
-    public void listarAvaliacoes() {}
+
+    public void avaliarMotorista(
+        Avaliacao avaliacao
+    ) {
+
+        avaliacaoDAO.salvar(
+            avaliacao
+        );
+    }
+
+
+    public void listarAvaliacoes() {
+
+        avaliacaoDAO.listarAvaliacoes();
+
+    }
 }

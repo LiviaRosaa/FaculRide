@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.faculride.controller;
+import com.mycompany.faculride.dao.CaronaDAO;
 import com.mycompany.faculride.model.Carona;
 /**
  *
@@ -11,11 +12,32 @@ import com.mycompany.faculride.model.Carona;
 
 public class CaronaController {
 
-    public void criarCarona(Carona carona) {}
-
-    public void listarCaronas() {}
-
-    public void atualizarStatus(Carona carona) {}
+    private CaronaDAO caronaDAO =
+    new CaronaDAO();
 
 
+    public void oferecerCarona(
+        Carona carona
+    ) {
+
+        caronaDAO.salvar(carona);
+
+    }
+
+
+    public void listarCaronas() {
+
+        caronaDAO.listarCaronas();
+
+    }
+
+
+    public void atualizarStatus(
+        Carona carona
+    ) {
+
+        caronaDAO.atualizarStatus(
+            carona
+        );
+    }
 }

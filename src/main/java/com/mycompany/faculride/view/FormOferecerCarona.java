@@ -4,6 +4,10 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.CaronaController;
+import com.mycompany.faculride.model.Carona;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author livia
@@ -11,12 +15,21 @@ package com.mycompany.faculride.view;
 public class FormOferecerCarona extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormOferecerCarona.class.getName());
+    private static FormOferecerCarona FormOferecerCaronaUnico;
 
-    /**
-     * Creates new form FormOferecerCarona
-     */
-    public FormOferecerCarona() {
+    
+    private FormOferecerCarona() {
         initComponents();
+    }
+
+    
+    // MÉTODO SINGLETON
+    public static FormOferecerCarona getFormOferecerCarona() {
+        if (FormOferecerCaronaUnico == null) {
+            FormOferecerCaronaUnico =
+            new FormOferecerCarona();
+        }
+        return FormOferecerCaronaUnico;
     }
 
     /**
@@ -46,6 +59,7 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         LblInicio = new javax.swing.JLabel();
         BtHome = new javax.swing.JButton();
+        BtHome1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,10 +78,13 @@ public class FormOferecerCarona extends javax.swing.JFrame {
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+
         jTextField3.addActionListener(this::jTextField3ActionPerformed);
 
         BtPublicar.setBackground(new java.awt.Color(204, 204, 255));
         BtPublicar.setText("Publicar Carona");
+        BtPublicar.addActionListener(this::BtPublicarActionPerformed);
 
         BoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponível", "Lotada", " ", " " }));
         BoxStatus.addActionListener(this::BoxStatusActionPerformed);
@@ -83,6 +100,11 @@ public class FormOferecerCarona extends javax.swing.JFrame {
 
         BtHome.setBackground(new java.awt.Color(204, 204, 255));
         BtHome.setText("Home");
+        BtHome.addActionListener(this::BtHomeActionPerformed);
+
+        BtHome1.setBackground(new java.awt.Color(204, 204, 255));
+        BtHome1.setText("Limpar");
+        BtHome1.addActionListener(this::BtHome1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,11 +156,14 @@ public class FormOferecerCarona extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LblInicio)
-                            .addComponent(LblData)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(BtHome)))
+                            .addComponent(LblData))))
                 .addContainerGap(118, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(BtHome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtHome1)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +201,9 @@ public class FormOferecerCarona extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LblInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtHome)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtHome)
+                    .addComponent(BtHome1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -199,34 +226,68 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DataActionPerformed
 
+    private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
+        FormTelaHome.getFormTelaHome().setVisible(true);
+    }//GEN-LAST:event_BtHomeActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void BtPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtPublicarActionPerformed
+        publicarCarona();
+    }//GEN-LAST:event_BtPublicarActionPerformed
+
+    private void BtHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHome1ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_BtHome1ActionPerformed
+private void publicarCarona() {
+    Carona carona =
+    new Carona();
+
+    carona.setOrigem(
+        jTextField2.getText()
+    );
+    carona.setDestino(
+        jTextField3.getText()
+    );
+    carona.setHorario(
+        jTextField5.getText()
+    );
+    carona.setValor(
+        Double.parseDouble(
+            jTextField4.getText()
+    )
+);
+    CaronaController controller =
+    new CaronaController();
+
+    controller.oferecerCarona(
+        carona
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Carona publicada!"
+    );
+
+}
+private void limparCampos() {
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.requestFocus();
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormOferecerCarona().setVisible(true));
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BoxStatus;
     private javax.swing.JButton BtHome;
+    private javax.swing.JButton BtHome1;
     private javax.swing.JButton BtPublicar;
     private javax.swing.JFormattedTextField Data;
     private javax.swing.JLabel LblData;

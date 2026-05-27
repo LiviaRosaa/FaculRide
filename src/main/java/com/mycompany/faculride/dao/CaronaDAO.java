@@ -4,10 +4,25 @@
  */
 package com.mycompany.faculride.dao;
 
+import com.mycompany.faculride.model.Carona;
+
 /**
  *
  * @author livia
  */
 public class CaronaDAO {
-    
+
+    public void salvar(Carona carona) {
+
+    }
+
+    public void listarCaronas() {
+
+    }
+
+    public void atualizarStatus(
+        Carona carona
+    ) {
+
+    }
 }

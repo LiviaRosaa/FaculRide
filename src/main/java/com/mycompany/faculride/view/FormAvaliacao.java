@@ -4,6 +4,10 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.AvaliacaoController;
+import com.mycompany.faculride.model.Avaliacao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author livia
@@ -11,12 +15,21 @@ package com.mycompany.faculride.view;
 public class FormAvaliacao extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormAvaliacao.class.getName());
+    private static FormAvaliacao FormAvaliacaoUnico;
 
-    /**
-     * Creates new form FormAvaliacao
-     */
-    public FormAvaliacao() {
+    
+    private FormAvaliacao() {
         initComponents();
+    }
+
+    
+    // MÉTODO SINGLETON
+    public static FormAvaliacao getFormAvaliacao() {
+        if (FormAvaliacaoUnico == null) {
+            FormAvaliacaoUnico =
+            new FormAvaliacao();
+        }
+        return FormAvaliacaoUnico;
     }
 
     /**
@@ -53,11 +66,13 @@ public class FormAvaliacao extends javax.swing.JFrame {
 
         BtAvaliar.setBackground(new java.awt.Color(204, 204, 255));
         BtAvaliar.setText("Avaliar");
+        BtAvaliar.addActionListener(this::BtAvaliarActionPerformed);
 
         LblHome.setText("Volte para a tela inicial...");
 
         BtHome.setBackground(new java.awt.Color(204, 204, 255));
         BtHome.setText("Home");
+        BtHome.addActionListener(this::BtHomeActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,30 +132,46 @@ public class FormAvaliacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BoxAvaliarActionPerformed
 
+    private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
+        FormTelaHome.getFormTelaHome().setVisible(true);
+    }//GEN-LAST:event_BtHomeActionPerformed
+
+    private void BtAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAvaliarActionPerformed
+        avaliarMotorista();
+    }//GEN-LAST:event_BtAvaliarActionPerformed
+private void avaliarMotorista() {
+
+    Avaliacao avaliacao =
+    new Avaliacao();
+
+
+    avaliacao.setNota(
+        Integer.parseInt(
+            BoxAvaliar.getSelectedItem()
+            .toString()
+        )
+    );
+
+
+    AvaliacaoController controller =
+    new AvaliacaoController();
+
+
+    controller.avaliarMotorista(
+        avaliacao
+    );
+
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Avaliação enviada!"
+    );
+
+}
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormAvaliacao().setVisible(true));
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BoxAvaliar;

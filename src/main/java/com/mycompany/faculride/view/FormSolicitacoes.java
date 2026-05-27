@@ -4,6 +4,9 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.SolicitacaoController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author livia
@@ -11,14 +14,22 @@ package com.mycompany.faculride.view;
 public class FormSolicitacoes extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormSolicitacoes.class.getName());
+    private static FormSolicitacoes FormSolicitacoesUnico;
 
-    /**
-     * Creates new form FormSolicitacoes
-     */
-    public FormSolicitacoes() {
+    
+    private FormSolicitacoes() {
         initComponents();
     }
 
+    
+    // MÉTODO SINGLETON
+    public static FormSolicitacoes getFormSolicitacoes() {
+        if (FormSolicitacoesUnico == null) {
+            FormSolicitacoesUnico =
+            new FormSolicitacoes();
+        }
+        return FormSolicitacoesUnico;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +74,7 @@ public class FormSolicitacoes extends javax.swing.JFrame {
 
         BtAvaliar.setBackground(new java.awt.Color(204, 204, 255));
         BtAvaliar.setText("Avaliar");
+        BtAvaliar.addActionListener(this::BtAvaliarActionPerformed);
 
         javax.swing.GroupLayout Panel2Layout = new javax.swing.GroupLayout(Panel2);
         Panel2.setLayout(Panel2Layout);
@@ -104,6 +116,7 @@ public class FormSolicitacoes extends javax.swing.JFrame {
 
         BtAceitar.setBackground(new java.awt.Color(204, 204, 255));
         BtAceitar.setText("Aceitar");
+        BtAceitar.addActionListener(this::BtAceitarActionPerformed);
 
         BtRecusar.setBackground(new java.awt.Color(204, 204, 255));
         BtRecusar.setText("Recusar");
@@ -140,6 +153,7 @@ public class FormSolicitacoes extends javax.swing.JFrame {
 
         BtHome.setBackground(new java.awt.Color(204, 204, 255));
         BtHome.setText("Home");
+        BtHome.addActionListener(this::BtHomeActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,30 +192,22 @@ public class FormSolicitacoes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
+        FormTelaHome.getFormTelaHome().setVisible(true);
+    }//GEN-LAST:event_BtHomeActionPerformed
+
+    private void BtAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAvaliarActionPerformed
+        FormAvaliacao.getFormAvaliacao().setVisible(true);
+    }//GEN-LAST:event_BtAvaliarActionPerformed
+
+    private void BtAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAceitarActionPerformed
+        
+    }//GEN-LAST:event_BtAceitarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormSolicitacoes().setVisible(true));
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtAceitar;

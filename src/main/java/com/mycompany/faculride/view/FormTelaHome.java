@@ -11,14 +11,22 @@ package com.mycompany.faculride.view;
 public class FormTelaHome extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormTelaHome.class.getName());
+    private static FormTelaHome formTelaHomeUnico;
 
-    /**
-     * Creates new form FormTelaHome
-     */
-    public FormTelaHome() {
+    
+    private FormTelaHome() {
         initComponents();
     }
 
+    
+    // MÉTODO SINGLETON
+    public static FormTelaHome getFormTelaHome() {
+        if (formTelaHomeUnico == null) {
+            formTelaHomeUnico =
+            new FormTelaHome();
+        }
+        return formTelaHomeUnico;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,18 +74,43 @@ public class FormTelaHome extends javax.swing.JFrame {
 
         Menu1.setBackground(new java.awt.Color(204, 204, 255));
         Menu1.setText("🏠 Home");
+        Menu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu1MouseClicked(evt);
+            }
+        });
         MenuPrincipal.add(Menu1);
 
         Menu2.setText("👥 Oferecer Carona");
+        Menu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu2MouseClicked(evt);
+            }
+        });
         MenuPrincipal.add(Menu2);
 
         Menu3.setText("🚗 Caronas disponíveis");
+        Menu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu3MouseClicked(evt);
+            }
+        });
         MenuPrincipal.add(Menu3);
 
         Menu4.setText("✉️ Solicitações");
+        Menu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu4MouseClicked(evt);
+            }
+        });
         MenuPrincipal.add(Menu4);
 
         Menu5.setText("★Avaliação");
+        Menu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu5MouseClicked(evt);
+            }
+        });
         MenuPrincipal.add(Menu5);
 
         setJMenuBar(MenuPrincipal);
@@ -125,37 +158,37 @@ public class FormTelaHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtOferecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtOferecerActionPerformed
-        // TODO add your handling code here:
+        FormOferecerCarona.getFormOferecerCarona().setVisible(true);
     }//GEN-LAST:event_BtOferecerActionPerformed
 
     private void BtVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVerActionPerformed
-        // TODO add your handling code here:
+        FormCaronasDisponiveis.getFormCaronasDisponiveis().setVisible(true);
     }//GEN-LAST:event_BtVerActionPerformed
+
+    private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Menu1MouseClicked
+
+    private void Menu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu2MouseClicked
+        FormOferecerCarona.getFormOferecerCarona().setVisible(true);
+    }//GEN-LAST:event_Menu2MouseClicked
+
+    private void Menu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu3MouseClicked
+        FormCaronasDisponiveis.getFormCaronasDisponiveis().setVisible(true);
+    }//GEN-LAST:event_Menu3MouseClicked
+
+    private void Menu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu4MouseClicked
+        FormSolicitacoes.getFormSolicitacoes().setVisible(true);
+    }//GEN-LAST:event_Menu4MouseClicked
+
+    private void Menu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu5MouseClicked
+        FormAvaliacao.getFormAvaliacao().setVisible(true);
+    }//GEN-LAST:event_Menu5MouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormTelaHome().setVisible(true));
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtOferecer;
