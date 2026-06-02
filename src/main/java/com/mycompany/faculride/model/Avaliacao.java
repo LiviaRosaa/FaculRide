@@ -12,14 +12,14 @@ public class Avaliacao {
 
     private int id;
     private int nota;
-    private String comentario;
+    private String motorista;
 
     public Avaliacao() {}
 
-    public Avaliacao(int id, int nota, String comentario, Usuario motorista, Usuario passageiro) {
+    public Avaliacao(int id, int nota, String motorista, Usuario passageiro) {
         this.id = id;
         this.nota = nota;
-        this.comentario = comentario;
+        this.motorista = motorista;
     }
 
     // Método
@@ -32,7 +32,7 @@ public class Avaliacao {
     public int getNota() { return nota; }
     public void setNota(int nota) { this.nota = nota; }
 
-    public String getComentario() { return comentario; }
-    public void setComentario(String comentario) { this.comentario = comentario; }
+    public String getMotorista() { return motorista; }
+    public void setMotorista(String motorista) { this.motorista = motorista; }
 
 }

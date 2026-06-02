@@ -12,32 +12,33 @@ import java.sql.SQLException;
  *
  * @author livia
  */
+
 public class ConnectionFactory {
 
     private static final String URL =
-    "jdbc:postgresql://localhost:5432/faculride";
+            "jdbc:postgresql://localhost:5432/faculride";
 
     private static final String USER =
-    "postgres";
+            "postgres";
 
     private static final String PASSWORD =
-    "1234";
-
+            "210606";
 
     public static Connection getConnection() {
 
         try {
 
             return DriverManager.getConnection(
-                URL,
-                USER,
-                PASSWORD
+                    URL,
+                    USER,
+                    PASSWORD
             );
 
         } catch (SQLException e) {
 
             throw new RuntimeException(
-                "Erro na conexão com banco"
+                    "Erro ao conectar com o banco!",
+                    e
             );
         }
     }

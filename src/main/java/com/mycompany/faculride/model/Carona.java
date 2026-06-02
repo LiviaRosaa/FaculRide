@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class Carona {
 
     private int id;
+    private String motorista;
     private String origem;
     private String destino;
     private String horario;
@@ -21,8 +22,9 @@ public class Carona {
 
     public Carona() {}
 
-    public Carona(int id, String origem, String destino, String horario, double valor, String status, Usuario motorista) {
+    public Carona(int id, String origem, String destino, String horario, double valor, String status, String motorista) {
         this.id = id;
+        this.motorista = motorista;
         this.origem = origem;
         this.destino = destino;
         this.horario = horario;
@@ -40,9 +42,12 @@ public class Carona {
     // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-
+    
     public String getOrigem() { return origem; }
     public void setOrigem(String origem) { this.origem = origem; }
+
+    public String getMotorista() { return motorista; }
+    public void setMotorista(String motorista) { this.motorista = motorista; }
 
     public String getDestino() { return destino; }
     public void setDestino(String destino) { this.destino = destino; }
