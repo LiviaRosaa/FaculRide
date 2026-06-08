@@ -204,6 +204,7 @@ private void limparCampos() {
     TextCad2.setText("");
     TextCad3.setText("");
     TextCad4.setText("");
+    TextCad5.setText("");
     TextCad5.requestFocus();
     }
 private void cadastrarUsuario() {

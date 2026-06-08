@@ -439,7 +439,7 @@ System.out.println(
     String motorista =
         jTable2.getValueAt(
             linha,
-            0
+            1
         ).toString();
 
     FormAvaliacao tela =
