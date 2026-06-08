@@ -32,11 +32,13 @@
                               <Component id="LblMotorista" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="BoxAvaliar" min="-2" pref="399" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="LblEstrela" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="LblLogo" min="-2" pref="112" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                              <Component id="LblText" min="-2" max="-2" attributes="0"/>
+                              <Component id="LblText" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -53,7 +55,7 @@
                       <Component id="BtHome" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="140" max="32767" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,6 +76,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BoxAvaliar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="LblMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LblEstrela" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="BtAvaliar" min="-2" max="-2" attributes="0"/>
@@ -107,11 +110,11 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
-            <StringItem index="0" value="1 &#x2605;"/>
-            <StringItem index="1" value="2 &#x2605;"/>
-            <StringItem index="2" value="3 &#x2605;"/>
-            <StringItem index="3" value="4 &#x2605;"/>
-            <StringItem index="4" value="5 &#x2605;"/>
+            <StringItem index="0" value="1"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
+            <StringItem index="3" value="4"/>
+            <StringItem index="4" value="5"/>
           </StringArray>
         </Property>
       </Properties>
@@ -159,6 +162,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtHomeActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LblEstrela">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x2605; "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

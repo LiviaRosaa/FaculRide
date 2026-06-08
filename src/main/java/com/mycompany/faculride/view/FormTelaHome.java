@@ -48,6 +48,7 @@ public class FormTelaHome extends javax.swing.JFrame {
         Menu3 = new javax.swing.JMenu();
         Menu4 = new javax.swing.JMenu();
         Menu5 = new javax.swing.JMenu();
+        Menu6 = new javax.swing.JMenu();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -112,6 +113,14 @@ public class FormTelaHome extends javax.swing.JFrame {
             }
         });
         MenuPrincipal.add(Menu5);
+
+        Menu6.setText("👥Login");
+        Menu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu6MouseClicked(evt);
+            }
+        });
+        MenuPrincipal.add(Menu6);
 
         setJMenuBar(MenuPrincipal);
 
@@ -185,6 +194,10 @@ public class FormTelaHome extends javax.swing.JFrame {
         FormAvaliacao.getFormAvaliacao().setVisible(true);
     }//GEN-LAST:event_Menu5MouseClicked
 
+    private void Menu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu6MouseClicked
+        FormTelaLogin.getFormTelaLogin().setVisible(true);
+    }//GEN-LAST:event_Menu6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -201,6 +214,7 @@ public class FormTelaHome extends javax.swing.JFrame {
     private javax.swing.JMenu Menu3;
     private javax.swing.JMenu Menu4;
     private javax.swing.JMenu Menu5;
+    private javax.swing.JMenu Menu6;
     private javax.swing.JMenuBar MenuPrincipal;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     // End of variables declaration//GEN-END:variables

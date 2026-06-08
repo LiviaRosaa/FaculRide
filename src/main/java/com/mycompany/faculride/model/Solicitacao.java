@@ -11,14 +11,16 @@ package com.mycompany.faculride.model;
 public class Solicitacao {
 
     private int id;
+    private int id_carona;
     private String passageiro;
     private String motorista;
     private String status;
 
     public Solicitacao() {}
 
-    public Solicitacao(int id, String status, String passageiro, String motorista, Carona carona) {
+    public Solicitacao(int id, int id_carona, String status, String passageiro, String motorista, Carona carona) {
         this.id = id;
+        this.id_carona= id_carona;
         this.passageiro = passageiro;
         this.motorista = motorista;
         this.status = status;
@@ -32,6 +34,9 @@ public class Solicitacao {
     // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+    
+    public int getId_carona() { return id_carona; }
+    public void setId_carona(int id_carona) { this.id_carona = id_carona; }
     
     public String getPassageiro() { return passageiro; }
     public void setPassageiro(String passageiro) { this.passageiro = passageiro; }

@@ -5,6 +5,7 @@
 package com.mycompany.faculride.controller;
 import com.mycompany.faculride.dao.SolicitacaoDAO;
 import com.mycompany.faculride.model.Solicitacao;
+import java.sql.ResultSet;
 /**
  *
  * @author livia
@@ -23,6 +24,26 @@ public class SolicitacaoController {
             solicitacao
         );
     }
+   
+   public ResultSet listarSolicitacoesRecebidas(
+        String motorista
+) {
+
+    return solicitacaoDAO
+            .listarSolicitacoesRecebidas(
+                    motorista
+            );
+}
+   
+   public ResultSet listarSolicitacoesEnviadas(
+        String passageiro
+) {
+
+    return solicitacaoDAO
+            .listarSolicitacoesEnviadas(
+                    passageiro
+            );
+}
 
 
     public void aceitarSolicitacao(
@@ -45,4 +66,13 @@ public class SolicitacaoController {
             solicitacao
         );
     }
+    
+    public void excluirSolicitacao(
+        int id
+) {
+
+    solicitacaoDAO.excluir(
+        id
+    );
+}
 }

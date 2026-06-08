@@ -4,8 +4,19 @@
  */
 package com.mycompany.faculride.view;
 
+import com.mycompany.faculride.controller.CaronaController;
 import com.mycompany.faculride.controller.SolicitacaoController;
+import com.mycompany.faculride.model.Carona;
+import com.mycompany.faculride.model.Solicitacao;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.sessao;
+import com.mycompany.faculride.view.FormAvaliacao;
+import connection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -19,6 +30,8 @@ public class FormSolicitacoes extends javax.swing.JFrame {
     
     private FormSolicitacoes() {
         initComponents();
+        carregarTabela();
+        carregarTabelaEnviadas();
     }
 
     
@@ -46,11 +59,13 @@ public class FormSolicitacoes extends javax.swing.JFrame {
         ScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         BtAvaliar = new javax.swing.JButton();
+        BtAvaliar1 = new javax.swing.JButton();
         Panel1 = new javax.swing.JPanel();
         ScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         BtAceitar = new javax.swing.JButton();
         BtRecusar = new javax.swing.JButton();
+        BtRecusar1 = new javax.swing.JButton();
         LblInicio = new javax.swing.JLabel();
         BtHome = new javax.swing.JButton();
 
@@ -67,14 +82,21 @@ public class FormSolicitacoes extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Motorista", "Origem", "Destino", "Horário", "Data", "Valor", "Status"
+                "Id", "Motorista", "Origem", "Destino", "horário", "Valor", "Status"
             }
         ));
         ScrollPane1.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         BtAvaliar.setBackground(new java.awt.Color(204, 204, 255));
         BtAvaliar.setText("Avaliar");
         BtAvaliar.addActionListener(this::BtAvaliarActionPerformed);
+
+        BtAvaliar1.setBackground(new java.awt.Color(204, 204, 255));
+        BtAvaliar1.setText("Cancelar Solicitação");
+        BtAvaliar1.addActionListener(this::BtAvaliar1ActionPerformed);
 
         javax.swing.GroupLayout Panel2Layout = new javax.swing.GroupLayout(Panel2);
         Panel2.setLayout(Panel2Layout);
@@ -85,8 +107,10 @@ public class FormSolicitacoes extends javax.swing.JFrame {
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(Panel2Layout.createSequentialGroup()
-                .addGap(275, 275, 275)
+                .addGap(171, 171, 171)
                 .addComponent(BtAvaliar)
+                .addGap(108, 108, 108)
+                .addComponent(BtAvaliar1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Panel2Layout.setVerticalGroup(
@@ -95,7 +119,9 @@ public class FormSolicitacoes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(BtAvaliar)
+                .addGroup(Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtAvaliar)
+                    .addComponent(BtAvaliar1))
                 .addContainerGap())
         );
 
@@ -103,13 +129,13 @@ public class FormSolicitacoes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Passageiro", "Origem", "Destino", "Horário", "Data", "Valor", "Status"
+                "Id Solicitação", "Id Carona", "Passageiro", "Origem", "Destino", "Horário", "Valor", "Status"
             }
         ));
         ScrollPane2.setViewportView(jTable1);
@@ -120,20 +146,27 @@ public class FormSolicitacoes extends javax.swing.JFrame {
 
         BtRecusar.setBackground(new java.awt.Color(204, 204, 255));
         BtRecusar.setText("Recusar");
+        BtRecusar.addActionListener(this::BtRecusarActionPerformed);
+
+        BtRecusar1.setBackground(new java.awt.Color(204, 204, 255));
+        BtRecusar1.setText("Marcar Como Lotada");
+        BtRecusar1.addActionListener(this::BtRecusar1ActionPerformed);
 
         javax.swing.GroupLayout Panel1Layout = new javax.swing.GroupLayout(Panel1);
         Panel1.setLayout(Panel1Layout);
         Panel1Layout.setHorizontalGroup(
             Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel1Layout.createSequentialGroup()
-                .addContainerGap(177, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
                 .addComponent(BtAceitar)
-                .addGap(115, 115, 115)
+                .addGap(47, 47, 47)
                 .addComponent(BtRecusar)
-                .addGap(203, 203, 203))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtRecusar1)
+                .addGap(53, 53, 53))
             .addGroup(Panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollPane2)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
         );
         Panel1Layout.setVerticalGroup(
@@ -143,7 +176,8 @@ public class FormSolicitacoes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtAceitar)
-                    .addComponent(BtRecusar))
+                    .addComponent(BtRecusar)
+                    .addComponent(BtRecusar1))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -197,13 +231,323 @@ public class FormSolicitacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_BtHomeActionPerformed
 
     private void BtAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAvaliarActionPerformed
-        FormAvaliacao.getFormAvaliacao().setVisible(true);
+        abrirTelaAvaliacao();
     }//GEN-LAST:event_BtAvaliarActionPerformed
 
     private void BtAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAceitarActionPerformed
-        
+        aceitarSolicitacao();
     }//GEN-LAST:event_BtAceitarActionPerformed
 
+    private void BtRecusarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRecusarActionPerformed
+        recusarSolicitacao();
+    }//GEN-LAST:event_BtRecusarActionPerformed
+
+    private void BtRecusar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRecusar1ActionPerformed
+        marcarComoLotada();
+    }//GEN-LAST:event_BtRecusar1ActionPerformed
+
+    private void BtAvaliar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAvaliar1ActionPerformed
+        excluirSolicitacao();        
+    }//GEN-LAST:event_BtAvaliar1ActionPerformed
+    private void carregarTabela() {
+
+    DefaultTableModel modelo =
+        (DefaultTableModel)
+        jTable1.getModel();
+
+    modelo.setRowCount(0);
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    try {
+System.out.println(
+    "Usuário logado: "
+    + sessao.usuarioLogado.getNome()
+);
+        ResultSet rs =
+            controller
+            .listarSolicitacoesRecebidas(
+                sessao.usuarioLogado
+                .getNome()
+            );
+
+        while (rs.next()) {
+
+          modelo.addRow(
+    new Object[] {
+        rs.getInt("id"),
+        rs.getInt("id_carona"),
+        rs.getString("passageiro"),
+        rs.getString("origem"),
+        rs.getString("destino"),
+        rs.getString("horario"),
+        rs.getDouble("valor"),
+        rs.getString("status")
+    }
+);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+}
+    private void carregarTabelaEnviadas() {
+
+    DefaultTableModel modelo =
+        (DefaultTableModel)
+        jTable2.getModel();
+
+    modelo.setRowCount(0);
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    try {
+
+        ResultSet rs =
+            controller.listarSolicitacoesEnviadas(
+                sessao.usuarioLogado.getNome()
+            );
+
+        while (rs.next()) {
+
+            modelo.addRow(
+                new Object[] {
+                    rs.getInt("id"),
+                    rs.getString("motorista"),
+                    rs.getString("origem"),
+                    rs.getString("destino"),
+                    rs.getString("horario"),
+                    rs.getDouble("valor"),
+                    rs.getString("status")
+                }
+            );
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+}
+    
+    private void aceitarSolicitacao() {
+
+    int linha =
+        jTable1.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma solicitação!"
+        );
+
+        return;
+    }
+
+    int idSolicitacao =
+        Integer.parseInt(
+            jTable1.getValueAt(
+                linha,
+                0
+            ).toString()
+        );
+
+    Solicitacao solicitacao =
+        new Solicitacao();
+
+    solicitacao.setId(
+        idSolicitacao
+    );
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    controller.aceitarSolicitacao(
+        solicitacao
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Solicitação aceita!"
+    );
+
+    carregarTabela();
+}
+    private void recusarSolicitacao() {
+
+    int linha =
+        jTable1.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma solicitação!"
+        );
+
+        return;
+    }
+
+    int idSolicitacao =
+        Integer.parseInt(
+            jTable1.getValueAt(
+                linha,
+                0
+            ).toString()
+        );
+
+    Solicitacao solicitacao =
+        new Solicitacao();
+
+    solicitacao.setId(
+        idSolicitacao
+    );
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    controller.recusarSolicitacao(
+        solicitacao
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Solicitação recusada!"
+    );
+
+    carregarTabela();
+}
+    
+  private void abrirTelaAvaliacao() {
+
+    int linha =
+        jTable2.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma solicitação!"
+        );
+
+        return;
+    }
+
+    String motorista =
+        jTable2.getValueAt(
+            linha,
+            0
+        ).toString();
+
+    FormAvaliacao tela =
+        FormAvaliacao.getFormAvaliacao();
+
+    tela.setMotorista(
+        motorista
+    );
+
+    tela.setVisible(
+        true
+    );
+}
+  private void marcarComoLotada() {
+
+    int linha =
+        jTable1.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma solicitação!"
+        );
+
+        return;
+    }
+
+    int idCarona =
+        Integer.parseInt(
+            jTable1.getValueAt(
+                linha,
+                1
+            ).toString()
+        );
+
+    Carona carona =
+        new Carona();
+
+    carona.setId(
+        idCarona
+    );
+
+    carona.setStatus(
+        "Lotada"
+    );
+
+    CaronaController controller =
+        new CaronaController();
+
+    controller.atualizarStatus(
+        carona
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Carona marcada como lotada!"
+    );
+}
+  private void excluirSolicitacao() {
+
+    int linha =
+        jTable2.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma solicitação!"
+        );
+
+        return;
+    }
+     int resposta =
+        JOptionPane.showConfirmDialog(
+            null,
+            "Deseja realmente cancelar esta solicitação?",
+            "Confirmar Cancelamento",
+            JOptionPane.YES_NO_OPTION
+        );
+
+    if (resposta != JOptionPane.YES_OPTION) {
+
+        return;
+    }
+
+    int id =
+        Integer.parseInt(
+            jTable2.getValueAt(
+                linha,
+                0
+            ).toString()
+        );
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    controller.excluirSolicitacao(
+        id
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Solicitação cancelada!"
+    );
+
+    carregarTabelaEnviadas();
+}
     /**
      * @param args the command line arguments
      */
@@ -212,8 +556,10 @@ public class FormSolicitacoes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtAceitar;
     private javax.swing.JButton BtAvaliar;
+    private javax.swing.JButton BtAvaliar1;
     private javax.swing.JButton BtHome;
     private javax.swing.JButton BtRecusar;
+    private javax.swing.JButton BtRecusar1;
     private javax.swing.JLabel LblInicio;
     private javax.swing.JLabel LblLogo;
     private javax.swing.JPanel Panel1;

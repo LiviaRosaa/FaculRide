@@ -5,6 +5,7 @@
 package com.mycompany.faculride.controller;
 import com.mycompany.faculride.dao.AvaliacaoDAO;
 import com.mycompany.faculride.model.Avaliacao;
+import java.sql.ResultSet;
 /**
  *
  * @author livia
@@ -26,9 +27,17 @@ public class AvaliacaoController {
     }
 
 
-    public void listarAvaliacoes() {
+    public ResultSet listarAvaliacoes() {
 
-        avaliacaoDAO.listarAvaliacoes();
+    return avaliacaoDAO.listarAvaliacoes();
 
-    }
+}
+    public double calcularMedia(
+        String motorista
+) {
+
+    return avaliacaoDAO.calcularMedia(
+        motorista
+    );
+}
 }

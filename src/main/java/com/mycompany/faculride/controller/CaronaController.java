@@ -5,6 +5,7 @@
 package com.mycompany.faculride.controller;
 import com.mycompany.faculride.dao.CaronaDAO;
 import com.mycompany.faculride.model.Carona;
+import java.sql.ResultSet;
 /**
  *
  * @author livia
@@ -25,19 +26,19 @@ public class CaronaController {
     }
 
 
-    public void listarCaronas() {
+    public ResultSet listarCaronas() {
 
-        caronaDAO.listarCaronas();
+    return caronaDAO.listarCaronas();
 
-    }
+}
 
 
-    public void atualizarStatus(
+   public void atualizarStatus(
         Carona carona
-    ) {
+) {
 
-        caronaDAO.atualizarStatus(
-            carona
-        );
-    }
+    caronaDAO.atualizarStatus(
+        carona
+    );
+}
 }

@@ -3,7 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.faculride.view;
-
+import com.mycompany.faculride.controller.AvaliacaoController;
+import com.mycompany.faculride.controller.CaronaController;
+import com.mycompany.faculride.controller.SolicitacaoController;
+import com.mycompany.faculride.model.Solicitacao;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.sessao;
 /**
  *
  * @author livia
@@ -16,6 +23,7 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
     
     private FormCaronasDisponiveis() {
         initComponents();
+        carregarTabela();
     }
 
     
@@ -60,7 +68,7 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome Motorista", "Avaliação", "Origem", "Destino", "Horário", "Data", "Valor", "Status"
+                "Id", "Nome Motorista", "Avaliação", "Origem", "Destino", "Horário", "Valor", "Status"
             }
         ));
         TableCarona.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,7 +132,7 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtSolicitarActionPerformed
-        // TODO add your handling code here:
+       solicitarCarona();
     }//GEN-LAST:event_BtSolicitarActionPerformed
 
     private void TableCaronaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCaronaMouseClicked
@@ -134,7 +142,138 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
     private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
         FormTelaHome.getFormTelaHome().setVisible(true);
     }//GEN-LAST:event_BtHomeActionPerformed
+private void carregarTabela() {
 
+    DefaultTableModel modelo =
+        (DefaultTableModel)
+        TableCarona.getModel();
+
+    modelo.setRowCount(0);
+
+    CaronaController controller =
+        new CaronaController();
+
+    AvaliacaoController avaliacaoController =
+        new AvaliacaoController();
+
+    try {
+
+        ResultSet rs =
+            controller.listarCaronas();
+
+        while (rs.next()) {
+
+            String motorista =
+                rs.getString(
+                    "motorista"
+                );
+
+            double media =
+                avaliacaoController
+                .calcularMedia(
+                    motorista
+                );
+
+            modelo.addRow(
+                new Object[] {
+                    rs.getInt("id"),
+
+                    motorista,
+
+                    String.format(
+                        "%.1f",
+                        media
+                    ),
+
+                    rs.getString(
+                        "origem"
+                    ),
+
+                    rs.getString(
+                        "destino"
+                    ),
+
+                    rs.getString(
+                        "horario"
+                    ),
+
+                    rs.getDouble(
+                        "valor"
+                    ),
+
+                    rs.getString(
+                        "status"
+                    )
+                }
+            );
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+}
+
+private void solicitarCarona() {
+
+    int linha =
+        TableCarona.getSelectedRow();
+
+    if (linha == -1) {
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Selecione uma carona!"
+        );
+
+        return;
+    }
+
+    int idCarona =
+        Integer.parseInt(
+            TableCarona.getValueAt(
+                linha,
+                0
+            ).toString()
+        );
+
+    String motorista =
+        TableCarona.getValueAt(
+            linha,
+            1
+        ).toString();
+
+    Solicitacao solicitacao =
+        new Solicitacao();
+
+    solicitacao.setPassageiro(
+        sessao.usuarioLogado.getNome()
+    );
+
+    solicitacao.setMotorista(
+        motorista
+    );
+
+    solicitacao.setStatus(
+        "Pendente"
+    );
+
+    solicitacao.setId_carona(
+        idCarona
+    );
+
+    SolicitacaoController controller =
+        new SolicitacaoController();
+
+    controller.solicitarVaga(
+        solicitacao
+    );
+
+    JOptionPane.showMessageDialog(
+        null,
+        "Solicitação enviada com sucesso!"
+    );
+}
     /**
      * @param args the command line arguments
      */

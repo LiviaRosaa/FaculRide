@@ -7,6 +7,7 @@ package com.mycompany.faculride.view;
 import com.mycompany.faculride.controller.CaronaController;
 import com.mycompany.faculride.model.Carona;
 import javax.swing.JOptionPane;
+import util.sessao;
 
 /**
  *
@@ -42,19 +43,15 @@ public class FormOferecerCarona extends javax.swing.JFrame {
     private void initComponents() {
 
         LblLogo = new javax.swing.JLabel();
-        LblOrigem = new javax.swing.JLabel();
         LblHorario = new javax.swing.JLabel();
         LblDestino = new javax.swing.JLabel();
         LblValor = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         BtPublicar = new javax.swing.JButton();
         BoxStatus = new javax.swing.JComboBox<>();
-        LblData = new javax.swing.JLabel();
-        Data = new javax.swing.JFormattedTextField();
         LblHorario1 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         LblInicio = new javax.swing.JLabel();
@@ -66,8 +63,6 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         LblLogo.setFont(new java.awt.Font("Serif", 2, 24)); // NOI18N
         LblLogo.setText("Oferecer Carona");
 
-        LblOrigem.setText("Nome Motorista:");
-
         LblHorario.setText("Destino:");
 
         LblDestino.setText("Origem:");
@@ -75,8 +70,6 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         LblValor.setText("Valor:");
 
         jLabel6.setText("Status:");
-
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
@@ -88,11 +81,6 @@ public class FormOferecerCarona extends javax.swing.JFrame {
 
         BoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponível", "Lotada", " ", " " }));
         BoxStatus.addActionListener(this::BoxStatusActionPerformed);
-
-        LblData.setText("Data saída:");
-
-        Data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        Data.addActionListener(this::DataActionPerformed);
 
         LblHorario1.setText("Horário:");
 
@@ -110,15 +98,6 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BtPublicar)
-                        .addGap(245, 245, 245))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -143,38 +122,33 @@ public class FormOferecerCarona extends javax.swing.JFrame {
                                         .addComponent(BoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Data, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(190, 190, 190))))
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(LblOrigem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LblInicio)
-                            .addComponent(LblData))))
+                        .addComponent(LblInicio)))
                 .addContainerGap(118, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(111, 111, 111)
                 .addComponent(BtHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtHome1)
-                .addGap(35, 35, 35))
+                .addGap(74, 74, 74))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtPublicar)
+                        .addGap(247, 247, 247))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(LblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(196, 196, 196))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(59, 59, 59)
                 .addComponent(LblLogo)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblOrigem)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LblDestino)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,27 +166,19 @@ public class FormOferecerCarona extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(BoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblData))
-                .addGap(37, 37, 37)
+                .addGap(50, 50, 50)
                 .addComponent(BtPublicar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addComponent(LblInicio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtHome)
                     .addComponent(BtHome1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -221,10 +187,6 @@ public class FormOferecerCarona extends javax.swing.JFrame {
     private void BoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BoxStatusActionPerformed
-
-    private void DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DataActionPerformed
 
     private void BtHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtHomeActionPerformed
         FormTelaHome.getFormTelaHome().setVisible(true);
@@ -242,25 +204,38 @@ public class FormOferecerCarona extends javax.swing.JFrame {
         limparCampos();
     }//GEN-LAST:event_BtHome1ActionPerformed
 private void publicarCarona() {
-    Carona carona =
-    new Carona();
 
+    Carona carona =
+        new Carona();
+
+    carona.setMotorista(
+    sessao.usuarioLogado.getNome()
+);
+   
     carona.setOrigem(
         jTextField2.getText()
     );
+
     carona.setDestino(
         jTextField3.getText()
     );
+
     carona.setHorario(
         jTextField5.getText()
     );
+
     carona.setValor(
         Double.parseDouble(
             jTextField4.getText()
-    )
-);
+        )
+    );
+
+    carona.setStatus(
+        "Disponível"
+    );
+  
     CaronaController controller =
-    new CaronaController();
+        new CaronaController();
 
     controller.oferecerCarona(
         carona
@@ -270,10 +245,8 @@ private void publicarCarona() {
         null,
         "Carona publicada!"
     );
-
 }
 private void limparCampos() {
-    jTextField1.setText("");
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
@@ -289,17 +262,13 @@ private void limparCampos() {
     private javax.swing.JButton BtHome;
     private javax.swing.JButton BtHome1;
     private javax.swing.JButton BtPublicar;
-    private javax.swing.JFormattedTextField Data;
-    private javax.swing.JLabel LblData;
     private javax.swing.JLabel LblDestino;
     private javax.swing.JLabel LblHorario;
     private javax.swing.JLabel LblHorario1;
     private javax.swing.JLabel LblInicio;
     private javax.swing.JLabel LblLogo;
-    private javax.swing.JLabel LblOrigem;
     private javax.swing.JLabel LblValor;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

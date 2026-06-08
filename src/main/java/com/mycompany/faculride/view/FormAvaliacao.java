@@ -48,6 +48,7 @@ public class FormAvaliacao extends javax.swing.JFrame {
         BtAvaliar = new javax.swing.JButton();
         LblHome = new javax.swing.JLabel();
         BtHome = new javax.swing.JButton();
+        LblEstrela = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,7 +58,7 @@ public class FormAvaliacao extends javax.swing.JFrame {
         LblMotorista.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LblMotorista.setText("Motorista: ");
 
-        BoxAvaliar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 ★", "2 ★", "3 ★", "4 ★", "5 ★" }));
+        BoxAvaliar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         BoxAvaliar.addActionListener(this::BoxAvaliarActionPerformed);
 
         LblLogo.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
@@ -74,6 +75,8 @@ public class FormAvaliacao extends javax.swing.JFrame {
         BtHome.setText("Home");
         BtHome.addActionListener(this::BtHomeActionPerformed);
 
+        LblEstrela.setText("★ ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,11 +89,13 @@ public class FormAvaliacao extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LblMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BoxAvaliar, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BoxAvaliar, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LblEstrela, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(156, 156, 156)
-                                .addComponent(LblText))))
+                                .addComponent(LblText, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(308, 308, 308)
                         .addComponent(BtAvaliar))
@@ -100,7 +105,7 @@ public class FormAvaliacao extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(BtHome)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +120,8 @@ public class FormAvaliacao extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoxAvaliar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LblMotorista))
+                    .addComponent(LblMotorista)
+                    .addComponent(LblEstrela, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(BtAvaliar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,10 +146,13 @@ public class FormAvaliacao extends javax.swing.JFrame {
         avaliarMotorista();
     }//GEN-LAST:event_BtAvaliarActionPerformed
 private void avaliarMotorista() {
-
+  System.out.println("ENTROU NO MÉTODO AVALIAR");
     Avaliacao avaliacao =
-    new Avaliacao();
+        new Avaliacao();
 
+    avaliacao.setMotorista(
+        LblMotorista.getText()
+    );
 
     avaliacao.setNota(
         Integer.parseInt(
@@ -152,21 +161,27 @@ private void avaliarMotorista() {
         )
     );
 
-
     AvaliacaoController controller =
-    new AvaliacaoController();
-
+        new AvaliacaoController();
 
     controller.avaliarMotorista(
         avaliacao
     );
 
-
     JOptionPane.showMessageDialog(
         null,
-        "Avaliação enviada!"
+        "Avaliação registrada!"
     );
 
+    this.dispose();
+}
+public void setMotorista(
+        String motorista
+) {
+
+    LblMotorista.setText(
+        motorista
+    );
 }
     /**
      * @param args the command line arguments
@@ -177,6 +192,7 @@ private void avaliarMotorista() {
     private javax.swing.JComboBox<String> BoxAvaliar;
     private javax.swing.JButton BtAvaliar;
     private javax.swing.JButton BtHome;
+    private javax.swing.JLabel LblEstrela;
     private javax.swing.JLabel LblHome;
     private javax.swing.JLabel LblLogo;
     private javax.swing.JLabel LblMotorista;

@@ -8,6 +8,7 @@ import com.mycompany.faculride.controller.UsuarioController;
 import com.mycompany.faculride.model.Usuario;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import util.sessao;
 
 /**
  *
@@ -165,30 +166,43 @@ public class FormTelaLogin extends javax.swing.JFrame {
     
     private void entrar() {
 
-    UsuarioController controller =
-    new UsuarioController();
+   UsuarioController controller =
+        new UsuarioController();
 
-    Usuario usuario =
-    controller.login(
+Usuario usuario =
+        controller.login(
         Text1.getText(),
         Text2.getText()
-    );
-    if (usuario != null) {
-
-        FormTelaHome
-        .getFormTelaHome()
-        .setVisible(true);
-
-        dispose();
-
-    } else {
-
-        JOptionPane.showMessageDialog(
-            null,
-            "Email ou senha inválidos!"
         );
-        limparCampos();
-    }
+
+if (usuario != null) {
+     sessao.usuarioLogado = usuario;
+     System.out.println(
+    "Usuário logado: "
+    + sessao.usuarioLogado.getNome()
+     );
+
+     System.out.println(
+    "Email: "
+    + sessao.usuarioLogado.getEmail()
+     );
+    JOptionPane.showMessageDialog(
+            null,
+            "Login realizado com sucesso!"
+    );
+
+    FormTelaHome.getFormTelaHome().setVisible(true);
+    this.dispose();
+
+} else {
+
+    JOptionPane.showMessageDialog(
+            null,
+            "E-mail ou senha inválidos!"
+    );
+
+    limparCampos();
+ }
 }
     /**
      * @param args the command line arguments

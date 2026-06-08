@@ -207,6 +207,19 @@ private void limparCampos() {
     TextCad5.requestFocus();
     }
 private void cadastrarUsuario() {
+    
+      if (TextCad1.getText().isEmpty()
+            || TextCad2.getText().isEmpty()
+            || TextCad3.getText().isEmpty()
+            || TextCad4.getText().isEmpty()) {
+
+        JOptionPane.showMessageDialog(
+                null,
+                "Preencha todos os campos!"
+        );
+
+        return;
+    }
 
     Usuario usuario = new Usuario();
 
