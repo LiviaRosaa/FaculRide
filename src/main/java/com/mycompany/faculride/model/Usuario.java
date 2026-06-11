@@ -25,15 +25,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    // Métodos
-    public void login() {}
-
-    public void cadastrar() {}
-
-    public void atualizarConta() {}
-
-    public void excluirConta() {}
-
     // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

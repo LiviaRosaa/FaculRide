@@ -32,13 +32,6 @@ public class Carona {
         this.status = status;
     }
 
-    // Métodos
-    public void oferecerCarona() {}
-
-    public void atualizarStatus() {}
-
-    public void criarCarona() {}
-
     // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

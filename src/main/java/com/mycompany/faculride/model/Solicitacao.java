@@ -26,10 +26,6 @@ public class Solicitacao {
         this.status = status;
     }
 
-    // Métodos 
-    public void enviarSolicitacao() {}
-
-    public void responderSolicitacao() {}
 
     // Getters e Setters
     public int getId() { return id; }

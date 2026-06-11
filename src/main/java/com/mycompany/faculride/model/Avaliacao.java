@@ -22,9 +22,6 @@ public class Avaliacao {
         this.motorista = motorista;
     }
 
-    // Método
-    public void avaliar() {}
-
     // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
