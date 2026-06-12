@@ -4,6 +4,9 @@
  */
 package com.mycompany.faculride.view;
 
+import javax.swing.JOptionPane;
+import util.sessao;
+
 /**
  *
  * @author livia
@@ -195,9 +198,28 @@ public class FormTelaHome extends javax.swing.JFrame {
     }//GEN-LAST:event_Menu5MouseClicked
 
     private void Menu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu6MouseClicked
-        FormTelaLogin.getFormTelaLogin().setVisible(true);
+        logout();
     }//GEN-LAST:event_Menu6MouseClicked
+    private void logout() {
 
+    int opcao =
+        JOptionPane.showConfirmDialog(
+            null,
+            "Deseja realmente sair?",
+            "Logout",
+            JOptionPane.YES_NO_OPTION
+        );
+
+    if (opcao == JOptionPane.YES_OPTION) {
+
+        sessao.usuarioLogado = null;
+
+        this.dispose();
+
+        new FormTelaLogin()
+            .setVisible(true);
+    }
+}
     /**
      * @param args the command line arguments
      */

@@ -25,7 +25,16 @@ public class FormCaronasDisponiveis extends javax.swing.JFrame {
         initComponents();
         carregarTabela();
     }
+     // sobrescrita de carregar tabela para atualizar automatico
+     @Override
+    public void setVisible(boolean visible) {
 
+        if (visible) {
+            carregarTabela();
+        }
+
+        super.setVisible(visible);
+    }
     
     // MÉTODO SINGLETON
     public static FormCaronasDisponiveis getFormCaronasDisponiveis() {

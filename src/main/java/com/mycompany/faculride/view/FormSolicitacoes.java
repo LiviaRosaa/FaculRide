@@ -33,7 +33,19 @@ public class FormSolicitacoes extends javax.swing.JFrame {
         carregarTabela();
         carregarTabelaEnviadas();
     }
+    // Sobreescrita carregar tabela
+    @Override
+public void setVisible(boolean visible) {
 
+    if (visible) {
+
+        carregarTabela();
+        carregarTabelaEnviadas();
+
+    }
+
+    super.setVisible(visible);
+}
     
     // MÉTODO SINGLETON
     public static FormSolicitacoes getFormSolicitacoes() {
