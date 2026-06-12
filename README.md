@@ -11,8 +11,21 @@ O sistema permite que estudantes ofereçam e solicitem caronas dentro do ambient
 - ☕ Java  
 - 🧠 Programação Orientada a Objetos (POO)  
 - 🗄️ PostgreSQL (em desenvolvimento)  
-- 💻 NetBeans  
+- 💻 NetBeans
+- 💻 JDBC
+- 💻 Java Swing
+
+---  
+## 📚 Conceitos Aplicados
+- Programação Orientada a Objetos (POO)
+- Arquitetura MVC
+- JDBC
+- PostgreSQL
+- Singleton
+- SRP (Single Responsibility Principle)
+- 
 ---
+
 ## 🚀 Status do Projeto
 
 🔧 Em desenvolvimento
