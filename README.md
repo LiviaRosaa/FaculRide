@@ -7,7 +7,6 @@ O sistema permite que estudantes ofereçam e solicitem caronas dentro do ambient
 
 ---
 ## 🛠️ Tecnologias Utilizadas
-
 - ☕ Java  
 - 🧠 Programação Orientada a Objetos (POO)  
 - 🗄️ PostgreSQL (em desenvolvimento)  
@@ -23,12 +22,42 @@ O sistema permite que estudantes ofereçam e solicitem caronas dentro do ambient
 - PostgreSQL
 - Singleton
 - SRP (Single Responsibility Principle)
-- 
+  
 ---
+## 📋 Requisitos Funcionais
+- Cadastro de usuários.
+- Login e autenticação.
+- Oferta de caronas.
+- Visualização de caronas disponíveis.
+- Solicitação de vagas.
+- Gerenciamento de solicitações.
+- Avaliação de motoristas.
+- Atualização de status das caronas.
 
+---
+## 📸 Telas do Sistema
+- Tela de Login
+- Tela de Cadastro
+- Tela Inicial (Home)
+- Oferta de Caronas
+- Caronas Disponíveis
+- Solicitações
+- Avaliação de Motoristas
+
+---
+## 🔮 Melhorias Futuras
+- Sistema de mensagens entre usuários.
+- Filtros avançados de busca.
+- Edição de caronas.
+- Exclusão de caronas.
+- Histórico de viagens.
+- Notificações para solicitações recebidas.
+- Melhora da interface
+
+---
 ## 🚀 Status do Projeto
 
-🔧 Em desenvolvimento
+✅ Concluído
 
 ---
 
